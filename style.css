@@ -828,6 +828,105 @@ footer {
 .contact-info .contact-item:not(a):hover {
     transform: translateY(-5px);
 }
+/* Language Switcher Styles */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-switcher {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: var(--light-color);
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+}
+
+.lang-btn.active {
+    background: var(--secondary-color);
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.lang-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Update contact item text colors */
+.contact-info a.contact-item .contact-detail,
+.contact-info a.contact-item .contact-title {
+    color: var(--secondary-color) !important;
+}
+
+.contact-info a.contact-item:hover .contact-detail,
+.contact-info a.contact-item:hover .contact-title {
+    color: var(--secondary-light) !important;
+}
+
+.cv-link {
+    color: var(--secondary-color) !important;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.cv-link:hover {
+    color: var(--secondary-light) !important;
+}
+
+/* Update for RTL/LTR direction changes */
+html[dir="ltr"] .hero-title {
+    background: linear-gradient(to left, var(--secondary-color), var(--primary-light));
+    -webkit-background-clip: text;
+}
+
+html[dir="ltr"] .section-title::after {
+    right: auto;
+    left: 0;
+}
+
+html[dir="ltr"] .back-to-top {
+    left: auto;
+    right: 30px;
+}
+
+/* Responsive styles for language switcher */
+@media (max-width: 768px) {
+    .nav-controls {
+        gap: 15px;
+    }
+    
+    .language-switcher {
+        order: 2;
+    }
+    
+    .mobile-menu {
+        order: 1;
+    }
+}
+
+@media (max-width: 576px) {
+    .language-switcher {
+        padding: 3px;
+    }
+    
+    .lang-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
 /* Extra Small Devices (Phones, less than 576px) */
 @media (max-width: 575.98px) {
     .container {
