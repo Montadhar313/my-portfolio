@@ -1047,6 +1047,41 @@ html[dir="ltr"] .back-to-top {
     }
 }
 
+/* تحسينات لقسم التصميم الجرافيكي */
+#graphic-design .gallery-overlay {
+    background: linear-gradient(transparent, rgba(183, 28, 28, 0.7));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#graphic-design .gallery-overlay::before {
+    content: "👁️";
+    font-size: 2rem;
+    color: var(--secondary-color);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+#graphic-design .gallery-item:hover .gallery-overlay::before {
+    opacity: 1;
+}
+
+#graphic-design .gallery-item {
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+#graphic-design .gallery-item:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* إزالة أي نصوص قد تظهر */
+#graphic-design .gallery-title,
+#graphic-design .gallery-category {
+    display: none;
+}
 /* Small Devices (Phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
     .container {
