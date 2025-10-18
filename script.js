@@ -508,3 +508,223 @@ document.querySelectorAll('img').forEach(img => {
         this.alt = 'صورة غير متوفرة';
     });
 });
+
+// انيميشنات التمرير والظهور
+class ScrollAnimations {
+    constructor() {
+        this.elements = [];
+        this.init();
+    }
+
+    init() {
+        this.cacheElements();
+        this.setupObservers();
+        this.setupScrollProgress();
+        this.setupHeaderAnimation();
+    }
+
+    cacheElements() {
+        this.sections = document.querySelectorAll('.section');
+        this.scrollTriggers = document.querySelectorAll('.scroll-trigger');
+        this.fadeElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
+    }
+
+    setupObservers() {
+        const options = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // إضافة انيميشن للعناصر الداخلية
+                    this.animateChildElements(entry.target);
+                }
+            });
+        }, options);
+
+        const elementObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -30px 0px'
+        });
+
+        // مراقبة الأقسام
+        this.sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // مراقبة العناصر الفردية
+        this.scrollTriggers.forEach(element => {
+            elementObserver.observe(element);
+        });
+
+        this.fadeElements.forEach(element => {
+            elementObserver.observe(element);
+        });
+    }
+
+    animateChildElements(section) {
+        const children = section.querySelectorAll('.scroll-trigger, .fade-in-up, .fade-in-left, .fade-in-right');
+        children.forEach((child, index) => {
+            setTimeout(() => {
+                child.classList.add('visible');
+                child.classList.add('animate');
+            }, index * 150);
+        });
+    }
+
+    setupScrollProgress() {
+        const progressBar = document.createElement('div');
+        progressBar.className = 'scroll-progress';
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight - winHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+    }
+
+    setupHeaderAnimation() {
+        const header = document.querySelector('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('scroll-up');
+                return;
+            }
+
+            if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+                header.classList.remove('scroll-up');
+                header.classList.add('scroll-down');
+            } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+                header.classList.remove('scroll-down');
+                header.classList.add('scroll-up');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // إظهار الهيدر بعد التحميل
+        setTimeout(() => {
+            header.classList.add('visible');
+        }, 500);
+    }
+}
+
+// تحسينات التنقل على الهواتف
+class MobileNavigation {
+    constructor() {
+        this.menuButton = document.querySelector('.mobile-menu');
+        this.nav = document.querySelector('nav');
+        this.init();
+    }
+
+    init() {
+        if (this.menuButton) {
+            this.menuButton.addEventListener('click', () => this.toggleMenu());
+        }
+
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => this.closeMenu());
+        });
+    }
+
+    toggleMenu() {
+        this.menuButton.classList.toggle('active');
+        this.nav.classList.toggle('active');
+        document.body.style.overflow = this.nav.classList.contains('active') ? 'hidden' : '';
+    }
+
+    closeMenu() {
+        this.menuButton.classList.remove('active');
+        this.nav.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// تأثيرات Hover المتقدمة
+class HoverEffects {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.setupCardEffects();
+        this.setupButtonEffects();
+    }
+
+    setupCardEffects() {
+        document.querySelectorAll('.skill-category, .platform-card, .video-card, .gallery-item').forEach(card => {
+            card.classList.add('card-hover', 'card-glow');
+        });
+    }
+
+    setupButtonEffects() {
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', (e) => {
+                const x = e.pageX - button.offsetLeft;
+                const y = e.pageY - button.offsetTop;
+                
+                button.style.setProperty('--x', x + 'px');
+                button.style.setProperty('--y', y + 'px');
+            });
+        });
+    }
+}
+
+// تهيئة كل شيء عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+    new ScrollAnimations();
+    new MobileNavigation();
+    new HoverEffects();
+
+    // إضافة تأثير تحميل أولي
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
+});
+
+// تحسينات الأداء
+window.addEventListener('load', () => {
+    // إزالة تأثير التحميل
+    document.body.classList.add('loaded');
+
+    // تحسين الصور
+    this.lazyLoadImages();
+});
+
+// التحميل الكسول للصور
+function lazyLoadImages() {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
