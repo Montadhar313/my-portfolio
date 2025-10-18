@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="معرض أعمالي - إبداع بلا حدود، عرض لأعمالي في التصميم والبرمجة والفنون الرقمية">
-    <meta name="keywords" content="معرض أعمال، تصميم، برمجة، يوتيوب، بينانس، GitHub">
+    <meta name="description" content="بروتوفوليو مطور ألعاب ومصمم جرافيك - إبداع في تطوير الألعاب والتصميم الجرافيكي والرسوم والأنيميشن">
+    <meta name="keywords" content="مطور ألعاب, مصمم جرافيك, رسام 2D, أنيميشن, يونيتي, بلندر, أدوبي">
     <meta name="author" content="اسمك">
-    <title>معرض أعمالي | إبداع بلا حدود</title>
+    <title>بروتوفوليو | مطور ألعاب ومصمم جرافيك</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -290,6 +290,71 @@
             margin: 0 auto 50px;
         }
 
+        /* Skills Section */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .skill-category {
+            background: linear-gradient(145deg, var(--dark-medium), var(--dark-light));
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-color);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-left: 15px;
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            color: var(--light-color);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-name {
+            color: var(--light-color);
+        }
+
+        .skill-level {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
         /* Platforms Section */
         .platforms {
             display: grid;
@@ -535,6 +600,43 @@
             text-align: center;
         }
 
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            background: var(--dark-medium);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            color: var(--light-color);
+            margin-bottom: 10px;
+        }
+
+        .contact-detail {
+            color: var(--gray-color);
+        }
+
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -719,8 +821,8 @@
                 font-size: 1.1rem;
             }
             
-            .platforms {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            .platforms, .skills {
+                grid-template-columns: 1fr;
             }
             
             .videos, .gallery {
@@ -788,11 +890,11 @@
             <div class="header-content">
                 <div class="logo-container">
                     <div class="logo">
-                        <i class="fas fa-crown"></i>
+                        <i class="fas fa-gamepad"></i>
                     </div>
                     <div class="logo-text">
-                        <div class="logo-title">معرض أعمالي</div>
-                        <div class="logo-subtitle">إبداع بلا حدود</div>
+                        <div class="logo-title">بروتوفوليو</div>
+                        <div class="logo-subtitle">مطور ألعاب ومصمم جرافيك</div>
                     </div>
                 </div>
                 
@@ -803,6 +905,7 @@
                 <nav>
                     <ul>
                         <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#skills">مهاراتي</a></li>
                         <li><a href="#platforms">منصاتي</a></li>
                         <li><a href="#videos">فيديوهاتي</a></li>
                         <li><a href="#gallery">معرض الأعمال</a></li>
@@ -817,8 +920,8 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">إبداعي هو هويتي</h1>
-                <p class="hero-subtitle">مرحباً بكم في معرض أعمالي، حيث أشارككم شغفي وإبداعي في التصميم والبرمجة والفنون الرقمية. استكشفوا عالمي الإبداعي من خلال منصاتي ومشاريعي.</p>
+                <h1 class="hero-title">إبداعي في عالم الألعاب والتصميم</h1>
+                <p class="hero-subtitle">مرحباً بكم في بروتوفوليو الخاص بي، حيث أشارككم شغفي وإبداعي في تطوير الألعاب، التصميم الجرافيكي، الرسوم والأنيميشن. استكشفوا عالمي الإبداعي من خلال مشاريعي وأعمالي.</p>
                 <div class="hero-buttons">
                     <a href="#gallery" class="btn btn-primary">
                         <i class="fas fa-images"></i> استعرض الأعمال
@@ -826,6 +929,91 @@
                     <a href="#contact" class="btn btn-secondary">
                         <i class="fas fa-envelope"></i> تواصل معي
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title">مهاراتي وخبراتي</h2>
+            <p class="section-subtitle">مجموعة المهارات والخبرات التي أمتلكها في مجالات تطوير الألعاب والتصميم الجرافيكي</p>
+            
+            <div class="skills">
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-gamepad skill-icon"></i>
+                        <h3 class="skill-title">تطوير الألعاب</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Unity Engine</span>
+                            <span class="skill-level">متقدم</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Blender 3D Models</span>
+                            <span class="skill-level">متوسط</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">C# Programming</span>
+                            <span class="skill-level">متقدم</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-level">متوسط</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-paint-brush skill-icon"></i>
+                        <h3 class="skill-title">التصميم الجرافيكي</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Adobe Photoshop</span>
+                            <span class="skill-level">متقدم</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Adobe Illustrator</span>
+                            <span class="skill-level">متقدم</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Adobe InDesign</span>
+                            <span class="skill-level">متوسط</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">الرسم الرقمي 2D</span>
+                            <span class="skill-level">متقدم</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-film skill-icon"></i>
+                        <h3 class="skill-title">الأنيميشن والمهارات الأخرى</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">أنيميشن 2D</span>
+                            <span class="skill-level">متقدم</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Microsoft Office</span>
+                            <span class="skill-level">متقدم</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">اللغة الإنجليزية</span>
+                            <span class="skill-level">متوسط</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">إدارة المشاريع</span>
+                            <span class="skill-level">متوسط</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -846,7 +1034,7 @@
                 <div class="platform-card">
                     <i class="fab fa-youtube platform-icon"></i>
                     <h3 class="platform-name">YouTube</h3>
-                    <p class="platform-desc">فيديوهات تعليمية وعرض المشاريع</p>
+                    <p class="platform-desc">فيديوهات تعليمية وعرض مشاريع الألعاب</p>
                 </div>
                 <div class="platform-card">
                     <i class="fab fa-instagram platform-icon"></i>
@@ -869,14 +1057,14 @@
                     <p class="platform-desc">قناة التواصل المباشر والأخبار</p>
                 </div>
                 <div class="platform-card">
-                    <i class="fab fa-dribbble platform-icon"></i>
-                    <h3 class="platform-name">Dribbble</h3>
-                    <p class="platform-desc">تصاميم UI/UX وتجارب المستخدم</p>
+                    <i class="fab fa-facebook platform-icon"></i>
+                    <h3 class="platform-name">Facebook</h3>
+                    <p class="platform-desc">صفحة أعمالي ومشاريعي</p>
                 </div>
                 <div class="platform-card">
-                    <i class="fab fa-linkedin platform-icon"></i>
-                    <h3 class="platform-name">LinkedIn</h3>
-                    <p class="platform-desc">ملفي المهني وخبراتي</p>
+                    <i class="fas fa-file-pdf platform-icon"></i>
+                    <h3 class="platform-name">السيرة الذاتية</h3>
+                    <p class="platform-desc">CV لمطور الألعاب والتصميم الجرافيكي</p>
                 </div>
             </div>
         </div>
@@ -886,7 +1074,7 @@
     <section class="section" id="videos">
         <div class="container">
             <h2 class="section-title">فيديوهات من يوتيوب</h2>
-            <p class="section-subtitle">أحدث الفيديوهات من قناتي على يوتيوب تعرض مشاريعي وتجاربي في التصميم والبرمجة</p>
+            <p class="section-subtitle">أحدث الفيديوهات من قناتي على يوتيوب تعرض مشاريعي وتجاربي في تطوير الألعاب والتصميم</p>
             
             <div class="videos">
                 <div class="video-card">
@@ -894,25 +1082,12 @@
                         <i class="fas fa-play-circle"></i>
                     </div>
                     <div class="video-info">
-                        <h3 class="video-title">تصميم هوية بصرية متكاملة لشركة ناشئة</h3>
+                        <h3 class="video-title">تطوير لعبة منصات باستخدام Unity</h3>
                         <div class="video-meta">
-                            <span><i class="far fa-clock"></i> 15 دقيقة</span>
-                            <span><i class="far fa-calendar"></i> 2 أسابيع</span>
-                        </div>
-                        <p class="video-desc">رحلة تصميم هوية بصرية متكاملة لشركة تقنية ناشئة، من البحث إلى التنفيذ النهائي.</p>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-thumbnail">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <div class="video-info">
-                        <h3 class="video-title">برمجة تطبيق ويب تفاعلي باستخدام React</h3>
-                        <div class="video-meta">
-                            <span><i class="far fa-clock"></i> 25 دقيقة</span>
+                            <span><i class="far fa-clock"></i> 18 دقيقة</span>
                             <span><i class="far fa-calendar"></i> 3 أسابيع</span>
                         </div>
-                        <p class="video-desc">تطوير تطبيق ويب تفاعلي من الصفر باستخدام مكتبة React وتقنيات حديثة.</p>
+                        <p class="video-desc">رحلة تطوير لعبة منصات ثنائية الأبعاد من الصفر باستخدام محرك Unity وبرمجة C#.</p>
                     </div>
                 </div>
                 <div class="video-card">
@@ -920,12 +1095,25 @@
                         <i class="fas fa-play-circle"></i>
                     </div>
                     <div class="video-info">
-                        <h3 class="video-title">تصميم تجربة مستخدم لتطبيق جوال</h3>
+                        <h3 class="video-title">تصميم شخصيات كرتونية باستخدام Illustrator</h3>
                         <div class="video-meta">
-                            <span><i class="far fa-clock"></i> 20 دقيقة</span>
+                            <span><i class="far fa-clock"></i> 25 دقيقة</span>
                             <span><i class="far fa-calendar"></i> شهر واحد</span>
                         </div>
-                        <p class="video-desc">عملية تصميم تجربة مستخدم كاملة لتطبيق جوال، من البحث إلى النماذج التفاعلية.</p>
+                        <p class="video-desc">عملية تصميم شخصيات كرتونية احترافية باستخدام أدوبي إليستريتور من التخطيط إلى التنفيذ.</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">أنيميشن 2D للشخصيات باستخدام Photoshop</h3>
+                        <div class="video-meta">
+                            <span><i class="far fa-clock"></i> 22 دقيقة</span>
+                            <span><i class="far fa-calendar"></i> أسبوعان</span>
+                        </div>
+                        <p class="video-desc">إنشاء أنيميشن ثنائي الأبعاد للشخصيات باستخدام أدوبي فوتوشوب وتقنيات الإطار بالإطار.</p>
                     </div>
                 </div>
             </div>
@@ -935,50 +1123,50 @@
     <!-- Gallery Section -->
     <section class="section" id="gallery">
         <div class="container">
-            <h2 class="section-title">صور أعمالي</h2>
-            <p class="section-subtitle">معرض يضم مجموعة مختارة من أعمالي في التصميم الجرافيكي، تطوير الويب، وتصميم UI/UX</p>
+            <h2 class="section-title">معرض أعمالي</h2>
+            <p class="section-subtitle">مجموعة مختارة من مشاريعي في تطوير الألعاب والتصميم الجرافيكي والرسوم والأنيميشن</p>
             
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=تصميم+شعار+مبتكر" alt="تصميم شعار مبتكر">
+                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=لعبة+منصات+2D" alt="لعبة منصات 2D">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">تصميم شعار مبتكر</h3>
-                        <p class="gallery-category">هوية بصرية</p>
+                        <h3 class="gallery-title">لعبة منصات 2D</h3>
+                        <p class="gallery-category">تطوير ألعاب</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=واجهة+تطبيق+جوال" alt="واجهة تطبيق جوال">
+                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=شخصيات+كرتونية" alt="شخصيات كرتونية">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">واجهة تطبيق جوال</h3>
-                        <p class="gallery-category">تصميم UI/UX</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=موقع+ويب+تفاعلي" alt="موقع ويب تفاعلي">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">موقع ويب تفاعلي</h3>
-                        <p class="gallery-category">تطوير ويب</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=تصميم+غلاف+كتاب" alt="تصميم غلاف كتاب">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">تصميم غلاف كتاب</h3>
+                        <h3 class="gallery-title">شخصيات كرتونية</h3>
                         <p class="gallery-category">تصميم جرافيكي</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=تصميم+إعلان+رقمي" alt="تصميم إعلان رقمي">
+                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=أنيميشن+2D" alt="أنيميشن 2D">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">تصميم إعلان رقمي</h3>
-                        <p class="gallery-category">إعلانات</p>
+                        <h3 class="gallery-title">أنيميشن 2D</h3>
+                        <p class="gallery-category">أنيميشن</p>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=تصميم+عبوة+منتج" alt="تصميم عبوة منتج">
+                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=نماذج+ثلاثية+الأبعاد" alt="نماذج ثلاثية الأبعاد">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">تصميم عبوة منتج</h3>
-                        <p class="gallery-category">تصميم منتج</p>
+                        <h3 class="gallery-title">نماذج ثلاثية الأبعاد</h3>
+                        <p class="gallery-category">Blender 3D</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=واجهة+لعبة" alt="واجهة لعبة">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">واجهة لعبة</h3>
+                        <p class="gallery-category">UI/UX تصميم</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/333333/FFFFFF?text=مشهد+فني+رقمي" alt="مشهد فني رقمي">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">مشهد فني رقمي</h3>
+                        <p class="gallery-category">الرسم الرقمي</p>
                     </div>
                 </div>
             </div>
@@ -990,6 +1178,36 @@
         <div class="container">
             <h2 class="section-title">اتصل بي</h2>
             <p class="section-subtitle">هل لديك مشروع أو فكرة تريد مناقشتها؟ لا تتردد في التواصل معي</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <h3 class="contact-title">البريد الإلكتروني</h3>
+                    <p class="contact-detail">montadhraluky121212@gmail.com</p>
+                    <p class="contact-detail">thundr121212@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <h3 class="contact-title">الهاتف</h3>
+                    <p class="contact-detail">+9647723905023</p>
+                    <p class="contact-detail">+9647515876796</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp contact-icon"></i>
+                    <h3 class="contact-title">واتساب</h3>
+                    <p class="contact-detail">+9647723905023</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-file-pdf contact-icon"></i>
+                    <h3 class="contact-title">السير الذاتية</h3>
+                    <p class="contact-detail">
+                        <a href="https://drive.google.com/file/d/19ZbRJeWjvZevvpGA2jW8dEy2C3oWh5Ew/view?usp=sharing" style="color: var(--secondary-color);">CV مطور ألعاب</a>
+                    </p>
+                    <p class="contact-detail">
+                        <a href="https://drive.google.com/file/d/19ZbRJeWjvZevvpGA2jW8dEy2C3oWh5Ew/view?usp=sharing" style="color: var(--secondary-color);">CV مصمم جرافيك</a>
+                    </p>
+                </div>
+            </div>
             
             <div class="contact-form">
                 <form id="contactForm">
@@ -1021,19 +1239,22 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">معرض أعمالي</div>
-                <p class="footer-desc">إبداعي هو شغفي، وأعمالي هي هويتي. أسعى دائماً لتقديم الأفضل من خلال مهاراتي وخبراتي في التصميم والبرمجة.</p>
+                <div class="footer-logo">بروتوفوليو مطور ألعاب</div>
+                <p class="footer-desc">شغفي هو تطوير الألعاب والتصميم الجرافيكي، وأعمالي هي هويتي. أسعى دائماً لتقديم الأفضل من خلال مهاراتي وخبراتي في هذا المجال.</p>
                 
                 <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-itch-io"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-github"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
                 </div>
                 
                 <div class="footer-links">
                     <a href="#home">الرئيسية</a>
+                    <a href="#skills">مهاراتي</a>
                     <a href="#platforms">منصاتي</a>
                     <a href="#videos">فيديوهاتي</a>
                     <a href="#gallery">معرض الأعمال</a>
@@ -1042,7 +1263,7 @@
             </div>
             
             <div class="copyright">
-                &copy; 2023 معرض أعمالي. جميع الحقوق محفوظة.
+                &copy; 2023 بروتوفوليو مطور ألعاب ومصمم جرافيك. جميع الحقوق محفوظة.
             </div>
         </div>
     </footer>
@@ -1118,7 +1339,7 @@
         }, observerOptions);
 
         // Observe all cards for animation
-        document.querySelectorAll('.platform-card, .video-card, .gallery-item').forEach(card => {
+        document.querySelectorAll('.platform-card, .video-card, .gallery-item, .skill-category, .contact-item').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
