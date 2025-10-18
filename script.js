@@ -10,6 +10,7 @@ const translations = {
         "platforms": "منصاتي",
         "videos": "فيديوهاتي",
         "gallery": "معرض الأعمال",
+        "graphicDesign": "جرافيك ديزاين",
         "contact": "اتصل بي",
         
         // Hero section
@@ -22,7 +23,7 @@ const translations = {
         "mySkills": "مهاراتي وخبراتي",
         "skillsSubtitle": "مجموعة المهارات والخبرات التي أمتلكها في مجالات تطوير الألعاب والتصميم الجرافيكي",
         "gameDevelopment": "تطوير الألعاب",
-        "graphicDesign": "التصميم الجرافيكي",
+        "graphicDesignCategory": "التصميم الجرافيكي",
         "animationOtherSkills": "الأنيميشن والمهارات الأخرى",
         "digitalDrawing2D": "الرسم الرقمي 2D",
         "animation2D": "أنيميشن 2D",
@@ -63,8 +64,8 @@ const translations = {
         // Gallery section
         "myGallery": "معرض أعمالي",
         "gallerySubtitle": "مجموعة مختارة من مشاريعي في تطوير الألعاب والتصميم الجرافيكي والرسوم والأنيميشن",
-        "gallery1Title": "لعبة 2D",
-        "gallery2Title": "شخصيات كرتونيةبكج ",
+        "gallery1Title": "لعبة Island Puzzle",
+        "gallery2Title": "لعبة ابن بطوطة",
         "gallery3Title": "أنيميشن 2D",
         "gallery4Title": "نماذج ثلاثية الأبعاد",
         "gallery5Title": "واجهة من برمجتي وتصميمي",
@@ -73,8 +74,9 @@ const translations = {
         "uiUxDesign": "UI/UX تصميم",
         "digitalDrawing": "الرسم الرقمي",
 
-         //Graphic Dsaign
-        "graphicDesign": "جرافيك ديزاين",
+        // Graphic Design Section
+        "graphicDesignGallery": "جرافيك ديزاين أعمالي",
+        "graphicDesignSubtitle": "مجموعة مختارة من أعمالي في التصميم الجرافيكي",
         
         // Contact section
         "contactSubtitle": "هل لديك مشروع أو فكرة تريد مناقشتها؟ لا تتردد في التواصل معي",
@@ -94,9 +96,9 @@ const translations = {
         "sendMessage": "إرسال الرسالة",
         
         // Footer
-        "portfolioGameDev": "بروتوفوليو مطور ألعاب",
+        "portfolioGameDev": "مطور ألعاب ومصمم جرافيك",
         "footerDesc": "شغفي هو تطوير الألعاب والتصميم الجرافيكي، وأعمالي هي هويتي. أسعى دائماً لتقديم الأفضل من خلال مهاراتي وخبراتي في هذا المجال.",
-        "portfolioGameDevGraphic": "بروتوفوليو مطور ألعاب ومصمم جرافيك",
+        "portfolioGameDevGraphic": "مطور ألعاب ومصمم جرافيك",
         "allRightsReserved": "جميع الحقوق محفوظة",
         
         // Form Messages
@@ -113,6 +115,7 @@ const translations = {
         "platforms": "Platforms",
         "videos": "Videos",
         "gallery": "Portfolio",
+        "graphicDesign": "Graphic Design",
         "contact": "Contact",
         
         // Hero section
@@ -125,7 +128,7 @@ const translations = {
         "mySkills": "My Skills & Experience",
         "skillsSubtitle": "The set of skills and experiences I have in game development and graphic design fields",
         "gameDevelopment": "Game Development",
-        "graphicDesign": "Graphic Design",
+        "graphicDesignCategory": "Graphic Design",
         "animationOtherSkills": "Animation & Other Skills",
         "digitalDrawing2D": "Digital Drawing 2D",
         "animation2D": "2D Animation",
@@ -166,8 +169,8 @@ const translations = {
         // Gallery section
         "myGallery": "My Works Gallery",
         "gallerySubtitle": "A selected collection of my projects in game development, graphic design, art and animation",
-        "gallery1Title": "2D Game",
-        "gallery2Title": "Cartoon Characters Pack",
+        "gallery1Title": "Island Puzzle Game",
+        "gallery2Title": "Ibn Battuta Game",
         "gallery3Title": "2D Animation",
         "gallery4Title": "3D Models",
         "gallery5Title": "Interface from my programming and design",
@@ -175,9 +178,10 @@ const translations = {
         "animation": "Animation",
         "uiUxDesign": "UI/UX Design",
         "digitalDrawing": "Digital Drawing",
-        
-         //Graphic Dsaign
-        "graphicDesign": "Graphic Design",
+
+        // Graphic Design Section
+        "graphicDesignGallery": "My Graphic Design Works",
+        "graphicDesignSubtitle": "A selected collection of my works in graphic design",
         
         // Contact section
         "contactSubtitle": "Do you have a project or idea you want to discuss? Feel free to contact me",
@@ -197,9 +201,9 @@ const translations = {
         "sendMessage": "Send Message",
         
         // Footer
-        "portfolioGameDev": "Game Developer Portfolio",
+        "portfolioGameDev": "Game Developer & Graphic Designer",
         "footerDesc": "My passion is game development and graphic design, and my works are my identity. I always strive to deliver the best through my skills and experiences in this field.",
-        "portfolioGameDevGraphic": "Game Developer & Graphic Designer Portfolio",
+        "portfolioGameDevGraphic": "Game Developer & Graphic Designer",
         "allRightsReserved": "All rights reserved",
         
         // Form Messages
@@ -222,7 +226,7 @@ function switchLanguage(lang) {
     // تحديد عنوان الصفحة
     document.title = translations[lang].pageTitle;
     
-    // تحديد جميع العناصر ذات السمة data-i18n
+    // تحديث جميع العناصر مع data-i18n
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang][key]) {
@@ -260,19 +264,16 @@ function initLanguage() {
 
 // العناصر التفاعلية لقسم الاتصال
 function initContactInteractions() {
-    // إضافة تأثيرات النقر لعناصر الاتصال
     const contactItems = document.querySelectorAll('.contact-info a.contact-item');
     
     contactItems.forEach(item => {
         item.addEventListener('click', function(e) {
-            // إضافة رد فعل بصري
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = '';
             }, 200);
         });
         
-        // إضافة إمكانية الوصول عن طريق لوحة المفاتيح
         item.addEventListener('keypress', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -282,7 +283,6 @@ function initContactInteractions() {
     });
 }
 
-// فتح الفيديو في نافذة مشغل الفيديو
 // فتح الفيديو في نافذة مشغل الفيديو
 function openVideo(videoId) {
     const videoModal = document.createElement('div');
@@ -358,7 +358,6 @@ function openVideo(videoId) {
     videoModal.appendChild(videoContainer);
     document.body.appendChild(videoModal);
     
-    // إضافة تأثير الظهور
     setTimeout(() => {
         videoModal.style.opacity = '1';
     }, 10);
@@ -376,14 +375,12 @@ function initVideos() {
                 openVideo(videoId);
             });
             
-            // إضافة إمكانية التشغيل بالزر Enter
             card.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     openVideo(videoId);
                 }
             });
             
-            // تحديث الصورة المصغرة في حالة الخطأ
             const thumbnail = card.querySelector('img');
             if (thumbnail) {
                 thumbnail.addEventListener('error', function() {
@@ -394,7 +391,7 @@ function initVideos() {
     });
 }
 
-// تحديث استدعاء الدالة في DOMContentLoaded
+// تهيئة كل شيء عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     initLanguage();
     initContactInteractions();
@@ -408,16 +405,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-   
-    
-   
-
 
 // تبديل قائمة الجوال
 document.querySelector('.mobile-menu').addEventListener('click', function() {
     document.querySelector('nav').classList.toggle('active');
 });
 
+// إغلاق قائمة الجوال عند النقر خارجها
+document.addEventListener('click', function(event) {
+    const nav = document.querySelector('nav');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (!nav.contains(event.target) && !mobileMenu.contains(event.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+    }
+});
 
 // زر العودة إلى الأعلى
 const backToTopButton = document.querySelector('.back-to-top');
@@ -504,20 +506,5 @@ document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', function() {
         this.src = 'https://via.placeholder.com/400x300/333333/FFFFFF?text=صورة+غير+متوفرة';
         this.alt = 'صورة غير متوفرة';
-    });
-});
-
-// تهيئة كل شيء عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    initLanguage();
-    initContactInteractions();
-    initVideos();
-    
-    // إضافة مستمعي الأحداث لأزرار اللغة
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const lang = this.getAttribute('data-lang');
-            switchLanguage(lang);
-        });
     });
 });
