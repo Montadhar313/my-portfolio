@@ -1688,7 +1688,91 @@ html[dir="ltr"] .back-to-top {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+/* أنماط إضافية للفيديوهات والمعرض */
+.video-modal {
+    animation: modalFadeIn 0.3s ease-out;
+}
 
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* تحسينات للروابط في المعرض */
+.gallery-item {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+/* تحسينات للفيديوهات */
+.video-thumbnail {
+    position: relative;
+    cursor: pointer;
+}
+
+.video-thumbnail i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.video-card:hover .video-thumbnail i {
+    color: var(--secondary-color);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* تحسينات للغة الإنجليزية */
+html[dir="ltr"] .hero-title {
+    background: linear-gradient(to left, var(--secondary-color), var(--primary-light));
+    -webkit-background-clip: text;
+}
+
+html[dir="ltr"] .section-title::after {
+    right: auto;
+    left: 0;
+}
+
+html[dir="ltr"] .back-to-top {
+    left: auto;
+    right: 30px;
+}
+
+html[dir="ltr"] nav a::after {
+    right: auto;
+    left: 15px;
+}
+
+html[dir="ltr"] .form-group {
+    text-align: left;
+}
+
+/* تحسينات للاستجابة */
+@media (max-width: 768px) {
+    .video-modal iframe {
+        height: 300px;
+    }
+    
+    .video-thumbnail i {
+        font-size: 3rem;
+    }
+}
 /* Extra Large Devices (Large Desktops, 1200px and up) */
 @media (min-width: 1200px) {
     .platforms {
