@@ -3,6 +3,16 @@ document.querySelector('.mobile-menu').addEventListener('click', function() {
     document.querySelector('nav').classList.toggle('active');
 });
 
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const nav = document.querySelector('nav');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (!nav.contains(event.target) && !mobileMenu.contains(event.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+    }
+});
+
 // Back to Top Button
 const backToTopButton = document.querySelector('.back-to-top');
 
@@ -43,6 +53,19 @@ document.querySelectorAll('nav a, .hero-buttons a, .footer-links a').forEach(anc
 // Form Submission
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
+    
+    // Simple form validation
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    if (!name || !email || !subject || !message) {
+        alert('يرجى ملء جميع الحقول المطلوبة');
+        return;
+    }
+    
+    // Simulate form submission
     alert('شكراً لتواصلك! سأرد عليك في أقرب وقت ممكن.');
     this.reset();
 });
@@ -69,3 +92,38 @@ document.querySelectorAll('.platform-card, .video-card, .gallery-item, .skill-ca
     card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(card);
 });
+
+// Handle image loading errors
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', function() {
+        this.src = 'https://via.placeholder.com/400x300/333333/FFFFFF?text=صورة+غير+متوفرة';
+        this.alt = 'صورة غير متوفرة';
+    });
+});
+
+// Touch device detection for hover effects
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+}
+
+if (isTouchDevice()) {
+    document.body.classList.add('touch-device');
+}
+
+// Lazy loading for images
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
