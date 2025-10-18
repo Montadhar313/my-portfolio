@@ -277,7 +277,8 @@ function initContactInteractions() {
 }
 
 // فتح الفيديو في نافذة مشغل الفيديو
-function openVideo(videoUrl) {
+// فتح الفيديو في نافذة مشغل الفيديو
+function openVideo(videoId) {
     const videoModal = document.createElement('div');
     videoModal.className = 'video-modal';
     videoModal.style.cssText = `
@@ -326,7 +327,7 @@ function openVideo(videoUrl) {
     `;
     
     const iframe = document.createElement('iframe');
-    iframe.src = videoUrl;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
     iframe.style.cssText = `
         width: 100%;
         height: 450px;
@@ -350,41 +351,67 @@ function openVideo(videoUrl) {
     videoContainer.appendChild(iframe);
     videoModal.appendChild(videoContainer);
     document.body.appendChild(videoModal);
+    
+    // إضافة تأثير الظهور
+    setTimeout(() => {
+        videoModal.style.opacity = '1';
+    }, 10);
 }
 
 // تهيئة الفيديوهات
 function initVideos() {
     const videoCards = document.querySelectorAll('.video-card');
     
-    videoCards.forEach((card, index) => {
-        // إضافة رابط يوتيوب لكل فيديو
-        const videoUrls = [
-            'https://www.youtube.com/embed/VIDEO_ID_1', // استبدل برابط الفيديو الفعلي
-            'https://www.youtube.com/embed/VIDEO_ID_2', // استبدل برابط الفيديو الفعلي
-            'https://www.youtube.com/embed/VIDEO_ID_3'  // استبدل برابط الفيديو الفعلي
-        ];
-        
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', () => {
-            openVideo(videoUrls[index]);
-        });
+    videoCards.forEach((card) => {
+        const videoId = card.getAttribute('data-video-id');
+        if (videoId) {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => {
+                openVideo(videoId);
+            });
+            
+            // إضافة إمكانية التشغيل بالزر Enter
+            card.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    openVideo(videoId);
+                }
+            });
+            
+            // تحديث الصورة المصغرة في حالة الخطأ
+            const thumbnail = card.querySelector('img');
+            if (thumbnail) {
+                thumbnail.addEventListener('error', function() {
+                    this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                });
+            }
+        }
     });
 }
+
+// تحديث استدعاء الدالة في DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    initLanguage();
+    initContactInteractions();
+    initVideos();
+    
+    // إضافة مستمعي الأحداث لأزرار اللغة
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+            switchLanguage(lang);
+        });
+    });
+});
+   
+    
+   
+
 
 // تبديل قائمة الجوال
 document.querySelector('.mobile-menu').addEventListener('click', function() {
     document.querySelector('nav').classList.toggle('active');
 });
 
-// إغلاق قائمة الجوال عند النقر خارجها
-document.addEventListener('click', function(event) {
-    const nav = document.querySelector('nav');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    if (!nav.contains(event.target) && !mobileMenu.contains(event.target) && nav.classList.contains('active')) {
-        nav.classList.remove('active');
-    }
-});
 
 // زر العودة إلى الأعلى
 const backToTopButton = document.querySelector('.back-to-top');
