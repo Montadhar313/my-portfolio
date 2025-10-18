@@ -1183,3 +1183,527 @@ html[dir="ltr"] .back-to-top {
         break-inside: avoid;
     }
 }
+:root {
+    --primary-color: #B71C1C;
+    --primary-dark: #7f0000;
+    --primary-light: #f44336;
+    --secondary-color: #D4AF37;
+    --secondary-dark: #a87c00;
+    --secondary-light: #ffeb3b;
+    --dark-color: #121212;
+    --dark-medium: #1a1a1a;
+    --dark-light: #2a2a2a;
+    --light-color: #f8f8f8;
+    --gray-color: #aaaaaa;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 15px 25px rgba(183, 28, 28, 0.3);
+    --border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(183, 28, 28, 0.05) 0%, transparent 20%);
+}
+
+.container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Header & Navigation */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    padding: 15px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    border: 2px solid var(--light-color);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.logo:hover {
+    transform: rotate(15deg) scale(1.05);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--light-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+}
+
+.logo-subtitle {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-top: 3px;
+}
+
+/* Navigation Controls */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-switcher {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: var(--light-color);
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+}
+
+.lang-btn.active {
+    background: var(--secondary-color);
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.lang-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--light-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav a {
+    color: var(--light-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 8px 15px;
+    border-radius: 30px;
+    transition: var(--transition);
+    position: relative;
+}
+
+nav a:hover {
+    color: var(--secondary-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: var(--transition);
+}
+
+nav a:hover::after {
+    width: calc(100% - 30px);
+}
+
+/* Update contact item text colors */
+.contact-info a.contact-item .contact-detail,
+.contact-info a.contact-item .contact-title {
+    color: var(--secondary-color) !important;
+}
+
+.contact-info a.contact-item:hover .contact-detail,
+.contact-info a.contact-item:hover .contact-title {
+    color: var(--secondary-light) !important;
+}
+
+.cv-link {
+    color: var(--secondary-color) !important;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.cv-link:hover {
+    color: var(--secondary-light) !important;
+}
+
+/* Contact Section Updates */
+.contact-info a.contact-item {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.contact-info a.contact-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.contact-click {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    margin-top: 10px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.contact-info a.contact-item:hover .contact-click {
+    opacity: 1;
+}
+
+.contact-info .contact-item:not(a) {
+    cursor: default;
+}
+
+.contact-info .contact-item:not(a):hover {
+    transform: translateY(-5px);
+}
+
+/* Update for RTL/LTR direction changes */
+html[dir="ltr"] .hero-title {
+    background: linear-gradient(to left, var(--secondary-color), var(--primary-light));
+    -webkit-background-clip: text;
+}
+
+html[dir="ltr"] .section-title::after {
+    right: auto;
+    left: 0;
+}
+
+html[dir="ltr"] .back-to-top {
+    left: auto;
+    right: 30px;
+}
+
+/* Rest of your CSS remains the same... */
+/* Hero Section, Skills, Platforms, Videos, Gallery, Contact, Footer, etc. */
+
+/* Responsive Design - Mobile First Approach */
+
+/* Extra Small Devices (Phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .container {
+        width: 95%;
+        padding: 10px 0;
+    }
+    
+    .section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .hero {
+        padding: 50px 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .logo-title {
+        font-size: 1.5rem;
+    }
+    
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+    
+    nav {
+        display: none;
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    nav.active {
+        display: block;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .skills, .platforms, .videos, .gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .skill-category, .platform-card {
+        padding: 20px;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form {
+        padding: 20px;
+    }
+    
+    .footer-links {
+        gap: 15px;
+    }
+    
+    .social-links {
+        gap: 10px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    /* Language switcher responsive */
+    .nav-controls {
+        gap: 15px;
+    }
+    
+    .language-switcher {
+        order: 2;
+    }
+    
+    .mobile-menu {
+        order: 1;
+    }
+}
+
+/* Small Devices (Phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .container {
+        width: 95%;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .platforms {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skills {
+        grid-template-columns: 1fr;
+    }
+    
+    .videos, .gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+    
+    nav {
+        display: none;
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    nav.active {
+        display: block;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* Medium Devices (Tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .container {
+        width: 90%;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .platforms {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .skills {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .videos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mobile-menu {
+        display: none;
+    }
+    
+    nav {
+        display: block;
+    }
+}
+
+/* Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .platforms {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .skills {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .videos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Extra Large Devices (Large Desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .platforms {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .skills {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .videos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
