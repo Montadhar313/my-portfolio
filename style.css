@@ -795,7 +795,39 @@ footer {
 }
 
 /* Responsive Design - Mobile First Approach */
+/* Contact Section Updates */
+.contact-info a.contact-item {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+    transition: var(--transition);
+}
 
+.contact-info a.contact-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.contact-click {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    margin-top: 10px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.contact-info a.contact-item:hover .contact-click {
+    opacity: 1;
+}
+
+.contact-info .contact-item:not(a) {
+    cursor: default;
+}
+
+.contact-info .contact-item:not(a):hover {
+    transform: translateY(-5px);
+}
 /* Extra Small Devices (Phones, less than 576px) */
 @media (max-width: 575.98px) {
     .container {
