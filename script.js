@@ -1,4 +1,4 @@
-// Translation system - أكثر دقة وسلاسة
+// نظام الترجمة - أكثر دقة وسلاسة
 const translations = {
     ar: {
         // Navigation & General
@@ -99,128 +99,28 @@ const translations = {
         // Form Messages
         "formSuccess": "شكراً لتواصلك! سأرد عليك في أقرب وقت ممكن.",
         "formError": "يرجى ملء جميع الحقول المطلوبة."
-    },
-    en: {
-        // Navigation & General
-        "pageTitle": "Portfolio | Game Developer & Graphic Designer",
-        "portfolio": "Portfolio",
-        "gameDevGraphicDesigner": "Game Developer & Graphic Designer",
-        "home": "Home",
-        "skills": "Skills",
-        "platforms": "Platforms",
-        "videos": "Videos",
-        "gallery": "Portfolio",
-        "contact": "Contact",
-        
-        // Hero section
-        "heroTitle": "My Creativity in Games & Design",
-        "heroSubtitle": "Welcome to my portfolio, where I share my passion and creativity in game development, graphic design, 2D art and animation. Explore my creative world through my projects and works.",
-        "viewWorks": "View Works",
-        "contactMe": "Contact Me",
-        
-        // Skills section
-        "mySkills": "My Skills & Experience",
-        "skillsSubtitle": "The set of skills and experiences I have in game development and graphic design fields",
-        "gameDevelopment": "Game Development",
-        "graphicDesign": "Graphic Design",
-        "animationOtherSkills": "Animation & Other Skills",
-        "digitalDrawing2D": "Digital Drawing 2D",
-        "animation2D": "2D Animation",
-        "englishLanguage": "English Language",
-        "projectManagement": "Project Management",
-        "advanced": "Advanced",
-        "intermediate": "Intermediate",
-        
-        // Platforms section
-        "myPlatforms": "My Online Platforms",
-        "platformsSubtitle": "You can follow me on various online platforms to see my latest works and projects",
-        "behanceDesc": "Design portfolio and visual creations",
-        "youtubeDesc": "Educational videos and game projects showcase",
-        "instagramDesc": "Daily snippets of my work and creativity",
-        "itchDesc": "My projects in game development",
-        "githubDesc": "My open source programming projects",
-        "telegramDesc": "Direct communication channel and news",
-        "facebookDesc": "My work and projects page",
-        "verse8Desc": "My creative works platform",
-        
-        // Videos section
-        "myVideos": "YouTube Videos",
-        "videosSubtitle": "Latest videos from my YouTube channel showcasing my projects and experiences in game development and design",
-        "video1Title": "Developing a Platform Game Using Unity",
-        "video1Duration": "18 minutes",
-        "video1Time": "3 weeks",
-        "video1Desc": "Journey of developing a 2D platform game from scratch using Unity engine and C# programming.",
-        "video2Title": "Designing Cartoon Characters Using Illustrator",
-        "video2Duration": "25 minutes",
-        "video2Time": "1 month",
-        "video2Desc": "Process of designing professional cartoon characters using Adobe Illustrator from planning to execution.",
-        "video3Title": "2D Character Animation Using Photoshop",
-        "video3Duration": "22 minutes",
-        "video3Time": "2 weeks",
-        "video3Desc": "Creating 2D character animation using Adobe Photoshop and frame-by-frame techniques.",
-        "visitYoutube": "Visit My YouTube Channel",
-        
-        // Gallery section
-        "myGallery": "My Works Gallery",
-        "gallerySubtitle": "A selected collection of my projects in game development, graphic design, art and animation",
-        "gallery1Title": "2D Platform Game",
-        "gallery2Title": "Cartoon Characters",
-        "gallery3Title": "2D Animation",
-        "gallery4Title": "3D Models",
-        "gallery5Title": "Game Interface",
-        "gallery6Title": "Digital Art Scene",
-        "animation": "Animation",
-        "uiUxDesign": "UI/UX Design",
-        "digitalDrawing": "Digital Drawing",
-        
-        // Contact section
-        "contactSubtitle": "Do you have a project or idea you want to discuss? Feel free to contact me",
-        "email": "Email",
-        "phone": "Phone",
-        "whatsapp": "WhatsApp",
-        "clickToEmail": "Click to send email",
-        "clickToCall": "Click to call",
-        "clickToWhatsapp": "Click to chat on WhatsApp",
-        "resumes": "Resumes",
-        "gameDeveloper": "Game Developer",
-        "graphicDesigner": "Graphic Designer",
-        "fullName": "Full Name",
-        "subject": "Subject",
-        "message": "Message",
-        "messagePlaceholder": "Enter your message here...",
-        "sendMessage": "Send Message",
-        
-        // Footer
-        "portfolioGameDev": "Game Developer Portfolio",
-        "footerDesc": "My passion is game development and graphic design, and my works are my identity. I always strive to deliver the best through my skills and experiences in this field.",
-        "portfolioGameDevGraphic": "Game Developer & Graphic Designer Portfolio",
-        "allRightsReserved": "All rights reserved",
-        
-        // Form Messages
-        "formSuccess": "Thank you for your message! I will get back to you as soon as possible.",
-        "formError": "Please fill in all required fields."
     }
 };
 
-// Current language state
+// حالة اللغة الحالية
 let currentLanguage = 'ar';
 
-// Language switching functionality
+// وظيفة تبديل اللغة
 function switchLanguage(lang) {
     currentLanguage = lang;
     
-    // Update HTML direction and language
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
+    // تحديد اتجاه HTML واللغة
+    document.documentElement.dir = 'rtl';
+    document.documentElement.lang = 'ar';
     
-    // Update page title
+    // تحديد عنوان الصفحة
     document.title = translations[lang].pageTitle;
     
-    // Update all elements with data-i18n attribute
+    // تحديد جميع العناصر ذات السمة data-i18n
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang][key]) {
-            // Check if it's a placeholder
+            // التحقق مما إذا كان عنصر نائب
             if (element.hasAttribute('data-i18n-placeholder')) {
                 element.placeholder = translations[lang][key];
             } else {
@@ -229,44 +129,37 @@ function switchLanguage(lang) {
         }
     });
     
-    // Update active language button
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
-    
-    // Save language preference
+    // حفظ تفضيل اللغة
     localStorage.setItem('preferred-language', lang);
     
-    // Trigger a custom event for any additional language-specific logic
+    // تشغيل حدث مخصص لأي منطق إضافي خاص باللغة
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
 }
 
-// Initialize language
+// تهيئة اللغة
 function initLanguage() {
-    // Check for saved language preference or use browser language
+    // التحقق من تفضيل اللغة المحفوظ أو استخدام لغة المتصفح
     const savedLang = localStorage.getItem('preferred-language');
-    const browserLang = navigator.language.startsWith('ar') ? 'ar' : 'en';
-    const initialLang = savedLang || browserLang;
+    const initialLang = savedLang || 'ar';
     
     switchLanguage(initialLang);
 }
 
-// Contact section interactive elements
+// العناصر التفاعلية لقسم الاتصال
 function initContactInteractions() {
-    // Add click effects for contact items
+    // إضافة تأثيرات النقر لعناصر الاتصال
     const contactItems = document.querySelectorAll('.contact-info a.contact-item');
     
     contactItems.forEach(item => {
         item.addEventListener('click', function(e) {
-            // Add a visual feedback
+            // إضافة رد فعل بصري
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = '';
             }, 200);
         });
         
-        // Add keyboard accessibility
+        // إضافة إمكانية الوصول عن طريق لوحة المفاتيح
         item.addEventListener('keypress', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -276,12 +169,12 @@ function initContactInteractions() {
     });
 }
 
-// Mobile Menu Toggle
+// تبديل قائمة الجوال
 document.querySelector('.mobile-menu').addEventListener('click', function() {
     document.querySelector('nav').classList.toggle('active');
 });
 
-// Close mobile menu when clicking outside
+// إغلاق قائمة الجوال عند النقر خارجها
 document.addEventListener('click', function(event) {
     const nav = document.querySelector('nav');
     const mobileMenu = document.querySelector('.mobile-menu');
@@ -291,7 +184,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Back to Top Button
+// زر العودة إلى الأعلى
 const backToTopButton = document.querySelector('.back-to-top');
 
 window.addEventListener('scroll', function() {
@@ -307,7 +200,7 @@ backToTopButton.addEventListener('click', function(e) {
     window.scrollTo({top: 0, behavior: 'smooth'});
 });
 
-// Smooth Scrolling for Navigation Links
+// التمرير السلس لروابط التنقل
 document.querySelectorAll('nav a, .hero-buttons a, .footer-links a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -322,17 +215,17 @@ document.querySelectorAll('nav a, .hero-buttons a, .footer-links a').forEach(anc
                 behavior: 'smooth'
             });
             
-            // Close mobile menu after clicking a link
+            // إغلاق قائمة الجوال بعد النقر على الرابط
             document.querySelector('nav').classList.remove('active');
         }
     });
 });
 
-// Form Submission with language support
+// إرسال النموذج مع دعم اللغة
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Simple form validation
+    // التحقق البسيط من النموذج
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
@@ -343,12 +236,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         return;
     }
     
-    // Simulate form submission with language-specific message
+    // محاكاة إرسال النموذج مع رسالة خاصة باللغة
     alert(translations[currentLanguage].formSuccess);
     this.reset();
 });
 
-// Add loading animation to cards on scroll
+// إضافة حركة التحميل للبطاقات عند التمرير
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -363,7 +256,7 @@ const observer = new IntersectionObserver(function(entries) {
     });
 }, observerOptions);
 
-// Observe all cards for animation
+// مراقبة جميع البطاقات للحركة
 document.querySelectorAll('.platform-card, .video-card, .gallery-item, .skill-category, .contact-item').forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
@@ -371,7 +264,7 @@ document.querySelectorAll('.platform-card, .video-card, .gallery-item, .skill-ca
     observer.observe(card);
 });
 
-// Handle image loading errors
+// التعامل مع أخطاء تحميل الصور
 document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', function() {
         this.src = 'https://via.placeholder.com/400x300/333333/FFFFFF?text=صورة+غير+متوفرة';
@@ -379,16 +272,8 @@ document.querySelectorAll('img').forEach(img => {
     });
 });
 
-// Initialize everything when the page loads
+// تهيئة كل شيء عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     initLanguage();
     initContactInteractions();
-    
-    // Add event listeners to language buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const lang = this.getAttribute('data-lang');
-            switchLanguage(lang);
-        });
-    });
 });
