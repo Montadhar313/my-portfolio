@@ -2,7 +2,7 @@
 const translations = {
     ar: {
         // Navigation & General
-        "pageTitle": "بروتوفوليو | مطور ألعاب ومصمم جرافيك",
+        "pageTitle": "منتظر كريم | مطور ألعاب ومصمم جرافيك",
         "portfolio": "بروتوفوليو",
         "gameDevGraphicDesigner": "مطور ألعاب ومصمم جرافيك",
         "home": "الرئيسية",
