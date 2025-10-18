@@ -105,7 +105,34 @@ document.querySelectorAll('img').forEach(img => {
 function isTouchDevice() {
     return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 }
+// Contact section interactive elements
+function initContactInteractions() {
+    // Add click effects for contact items
+    const contactItems = document.querySelectorAll('.contact-info a.contact-item');
+    
+    contactItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Add a visual feedback
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+        });
+        
+        // Add keyboard accessibility
+        item.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
+}
 
+// Initialize contact interactions when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initContactInteractions();
+});
 if (isTouchDevice()) {
     document.body.classList.add('touch-device');
 }
@@ -127,3 +154,4 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
+
