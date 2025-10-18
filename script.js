@@ -72,6 +72,9 @@ const translations = {
         "animation": "أنيميشن",
         "uiUxDesign": "UI/UX تصميم",
         "digitalDrawing": "الرسم الرقمي",
+
+         //Graphic Dsaign
+        "graphicDesign": "جرافيك ديزاين",
         
         // Contact section
         "contactSubtitle": "هل لديك مشروع أو فكرة تريد مناقشتها؟ لا تتردد في التواصل معي",
@@ -172,6 +175,9 @@ const translations = {
         "animation": "Animation",
         "uiUxDesign": "UI/UX Design",
         "digitalDrawing": "Digital Drawing",
+        
+         //Graphic Dsaign
+        "graphicDesign": "Graphic Design",
         
         // Contact section
         "contactSubtitle": "Do you have a project or idea you want to discuss? Feel free to contact me",
