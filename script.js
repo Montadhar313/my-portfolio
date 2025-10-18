@@ -99,6 +99,106 @@ const translations = {
         // Form Messages
         "formSuccess": "شكراً لتواصلك! سأرد عليك في أقرب وقت ممكن.",
         "formError": "يرجى ملء جميع الحقول المطلوبة."
+    },
+    en: {
+        // Navigation & General
+        "pageTitle": "Montadhar Karim | Game Developer & Graphic Designer",
+        "portfolio": "Montadhar Karim",
+        "gameDevGraphicDesigner": "Game Developer & Graphic Designer",
+        "home": "Home",
+        "skills": "Skills",
+        "platforms": "Platforms",
+        "videos": "Videos",
+        "gallery": "Portfolio",
+        "contact": "Contact",
+        
+        // Hero section
+        "heroTitle": "My Creativity in Games & Design",
+        "heroSubtitle": "Welcome to my portfolio, where I share my passion and creativity in game development, graphic design, 2D art and animation. Explore my creative world through my projects and works.",
+        "viewWorks": "View Works",
+        "contactMe": "Contact Me",
+        
+        // Skills section
+        "mySkills": "My Skills & Experience",
+        "skillsSubtitle": "The set of skills and experiences I have in game development and graphic design fields",
+        "gameDevelopment": "Game Development",
+        "graphicDesign": "Graphic Design",
+        "animationOtherSkills": "Animation & Other Skills",
+        "digitalDrawing2D": "Digital Drawing 2D",
+        "animation2D": "2D Animation",
+        "englishLanguage": "English Language",
+        "projectManagement": "Project Management",
+        "advanced": "Advanced",
+        "intermediate": "Intermediate",
+        
+        // Platforms section
+        "myPlatforms": "My Online Platforms",
+        "platformsSubtitle": "You can follow me on various online platforms to see my latest works and projects",
+        "behanceDesc": "Design portfolio and visual creations",
+        "youtubeDesc": "Educational videos and game projects showcase",
+        "instagramDesc": "Daily snippets of my work and creativity",
+        "itchDesc": "My projects in game development",
+        "githubDesc": "My open source programming projects",
+        "telegramDesc": "Direct communication channel and news",
+        "facebookDesc": "My work and projects page",
+        "verse8Desc": "My creative works platform",
+        
+        // Videos section
+        "myVideos": "YouTube Videos",
+        "videosSubtitle": "Latest videos from my YouTube channel showcasing my projects and experiences in game development and design",
+        "video1Title": "2D Character drawing in Photoshop and animation in Unity",
+        "video1Duration": "1:38 Duration",
+        "video1Time": "4 days",
+        "video1Desc": "One of the most beautiful designs I created 3 years ago where I was able to draw characters using Photoshop and animate them in Unity. You'll like them.",
+        "video2Title": "Designing Iraq map with Iraqi marshes style in Photoshop",
+        "video2Duration": "3:41 Duration",
+        "video2Time": "8 hours",
+        "video2Desc": "Process of designing Iraq map during a design competition on the Iraqi Designer platform. I tried to make the design more professional using Adobe Photoshop from planning to execution.",
+        "video3Title": "Logo Intro - Humble work for Golden Rock G_Team company logo intro",
+        "video3Duration": "11 seconds",
+        "video3Time": "2 days",
+        "video3Desc": "Creating an intro for Golden Rock G_Team company was a work from memory and one of the humble works I wanted to share with you.",
+        "visitYoutube": "Visit My YouTube Channel",
+        
+        // Gallery section
+        "myGallery": "My Works Gallery",
+        "gallerySubtitle": "A selected collection of my projects in game development, graphic design, art and animation",
+        "gallery1Title": "2D Game",
+        "gallery2Title": "Cartoon Characters Pack",
+        "gallery3Title": "2D Animation",
+        "gallery4Title": "3D Models",
+        "gallery5Title": "Interface from my programming and design",
+        "gallery6Title": "Robotos Game under development",
+        "animation": "Animation",
+        "uiUxDesign": "UI/UX Design",
+        "digitalDrawing": "Digital Drawing",
+        
+        // Contact section
+        "contactSubtitle": "Do you have a project or idea you want to discuss? Feel free to contact me",
+        "email": "Email",
+        "phone": "Phone",
+        "whatsapp": "WhatsApp",
+        "clickToEmail": "Click to send email",
+        "clickToCall": "Click to call",
+        "clickToWhatsapp": "Click to chat on WhatsApp",
+        "resumes": "Resumes",
+        "gameDeveloper": "Game Developer",
+        "graphicDesigner": "Graphic Designer",
+        "fullName": "Full Name",
+        "subject": "Subject",
+        "message": "Message",
+        "messagePlaceholder": "Enter your message here...",
+        "sendMessage": "Send Message",
+        
+        // Footer
+        "portfolioGameDev": "Game Developer Portfolio",
+        "footerDesc": "My passion is game development and graphic design, and my works are my identity. I always strive to deliver the best through my skills and experiences in this field.",
+        "portfolioGameDevGraphic": "Game Developer & Graphic Designer Portfolio",
+        "allRightsReserved": "All rights reserved",
+        
+        // Form Messages
+        "formSuccess": "Thank you for your message! I will get back to you as soon as possible.",
+        "formError": "Please fill in all required fields."
     }
 };
 
@@ -110,8 +210,8 @@ function switchLanguage(lang) {
     currentLanguage = lang;
     
     // تحديد اتجاه HTML واللغة
-    document.documentElement.dir = 'rtl';
-    document.documentElement.lang = 'ar';
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
     
     // تحديد عنوان الصفحة
     document.title = translations[lang].pageTitle;
@@ -129,6 +229,12 @@ function switchLanguage(lang) {
         }
     });
     
+    // تحديث أزرار اللغة النشطة
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+    
     // حفظ تفضيل اللغة
     localStorage.setItem('preferred-language', lang);
     
@@ -140,7 +246,8 @@ function switchLanguage(lang) {
 function initLanguage() {
     // التحقق من تفضيل اللغة المحفوظ أو استخدام لغة المتصفح
     const savedLang = localStorage.getItem('preferred-language');
-    const initialLang = savedLang || 'ar';
+    const browserLang = navigator.language.startsWith('ar') ? 'ar' : 'en';
+    const initialLang = savedLang || browserLang;
     
     switchLanguage(initialLang);
 }
@@ -165,6 +272,101 @@ function initContactInteractions() {
                 e.preventDefault();
                 this.click();
             }
+        });
+    });
+}
+
+// فتح الفيديو في نافذة مشغل الفيديو
+function openVideo(videoUrl) {
+    const videoModal = document.createElement('div');
+    videoModal.className = 'video-modal';
+    videoModal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        backdrop-filter: blur(10px);
+    `;
+    
+    const videoContainer = document.createElement('div');
+    videoContainer.style.cssText = `
+        position: relative;
+        width: 90%;
+        max-width: 800px;
+        background: var(--dark-medium);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    `;
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '×';
+    closeBtn.style.cssText = `
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 10001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
+    
+    const iframe = document.createElement('iframe');
+    iframe.src = videoUrl;
+    iframe.style.cssText = `
+        width: 100%;
+        height: 450px;
+        border: none;
+        display: block;
+    `;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(videoModal);
+    });
+    
+    videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) {
+            document.body.removeChild(videoModal);
+        }
+    });
+    
+    videoContainer.appendChild(closeBtn);
+    videoContainer.appendChild(iframe);
+    videoModal.appendChild(videoContainer);
+    document.body.appendChild(videoModal);
+}
+
+// تهيئة الفيديوهات
+function initVideos() {
+    const videoCards = document.querySelectorAll('.video-card');
+    
+    videoCards.forEach((card, index) => {
+        // إضافة رابط يوتيوب لكل فيديو
+        const videoUrls = [
+            'https://www.youtube.com/embed/VIDEO_ID_1', // استبدل برابط الفيديو الفعلي
+            'https://www.youtube.com/embed/VIDEO_ID_2', // استبدل برابط الفيديو الفعلي
+            'https://www.youtube.com/embed/VIDEO_ID_3'  // استبدل برابط الفيديو الفعلي
+        ];
+        
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            openVideo(videoUrls[index]);
         });
     });
 }
@@ -276,4 +478,13 @@ document.querySelectorAll('img').forEach(img => {
 document.addEventListener('DOMContentLoaded', function() {
     initLanguage();
     initContactInteractions();
+    initVideos();
+    
+    // إضافة مستمعي الأحداث لأزرار اللغة
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+            switchLanguage(lang);
+        });
+    });
 });
