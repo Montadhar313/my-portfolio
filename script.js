@@ -427,40 +427,89 @@ function initImageErrorHandling() {
 }
 
 
-// تهيئة قائمة الجوال - تأكد من أن هذه الدالة موجودة
+// تهيئة القائمة المتنقلة - الإصدار المحسن
 function initMobileMenu() {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const nav = document.querySelector('nav');
-    const navOverlay = document.querySelector('.nav-overlay');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const navOverlay = document.getElementById('navOverlay');
+    const body = document.body;
 
-    if (mobileMenu && nav && navOverlay) {
-        mobileMenu.addEventListener('click', function() {
-            this.classList.toggle('active');
-            nav.classList.toggle('active');
-            navOverlay.classList.toggle('active');
-            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+    if (mobileMenuBtn && mobileNav && navOverlay) {
+        // فتح/إغلاق القائمة
+        function toggleMobileMenu() {
+            const isActive = mobileMenuBtn.classList.contains('active');
+            
+            if (isActive) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            mobileMenuBtn.classList.add('active');
+            mobileNav.classList.add('active');
+            navOverlay.classList.add('active');
+            body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+
+        // إضافة مستمعي الأحداث
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMobileMenu();
         });
 
-        navOverlay.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-            nav.classList.remove('active');
-            this.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        navOverlay.addEventListener('click', closeMobileMenu);
 
         // إغلاق القائمة عند النقر على رابط
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                nav.classList.remove('active');
-                navOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // إغلاق القائمة عند تغيير حجم النافذة
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 992) {
+                closeMobileMenu();
+            }
+        });
+
+        // إغلاق القائمة عند الضغط على زر Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
         });
     }
 }
 
+// في قسم DOMContentLoaded، تأكد من استدعاء الدالة:
+document.addEventListener('DOMContentLoaded', function() {
+    initLanguage();
+    initContactInteractions();
+    initVideos();
+    initScrollAnimations();
+    initImageErrorHandling();
+    initMobileMenu(); // ← هذه هي الدالة الجديدة
+    initBackToTop();
+    initSmoothScrolling();
+    initContactForm();
+    
+    // إضافة مستمعي الأحداث لأزرار اللغة
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const lang = this.getAttribute('data-lang');
+            switchLanguage(lang);
+        });
+    });
+});
 // تهيئة زر العودة للأعلى
 function initBackToTop() {
     const backToTopButton = document.querySelector('.back-to-top');
