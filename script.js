@@ -391,11 +391,161 @@ function initVideos() {
     });
 }
 
+// إضافة حركة التحميل للبطاقات عند التمرير
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // مراقبة جميع البطاقات للحركة
+    document.querySelectorAll('.platform-card, .video-card, .gallery-item, .skill-category, .contact-item').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(card);
+    });
+}
+
+// التعامل مع أخطاء تحميل الصور
+function initImageErrorHandling() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.src = 'https://via.placeholder.com/400x300/333333/FFFFFF?text=صورة+غير+متوفرة';
+            this.alt = 'صورة غير متوفرة';
+        });
+    });
+}
+
+// تهيئة قائمة الجوال
+function initMobileMenu() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const nav = document.querySelector('nav');
+    const navOverlay = document.querySelector('.nav-overlay');
+
+    if (mobileMenu && nav && navOverlay) {
+        mobileMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            nav.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        navOverlay.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            nav.classList.remove('active');
+            this.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // إغلاق القائمة عند النقر على رابط
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                nav.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+}
+
+// تهيئة زر العودة للأعلى
+function initBackToTop() {
+    const backToTopButton = document.querySelector('.back-to-top');
+
+    if (backToTopButton) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+    }
+}
+
+// تهيئة التمرير السلس
+function initSmoothScrolling() {
+    document.querySelectorAll('nav a, .hero-buttons a, .footer-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // إغلاق قائمة الجوال بعد النقر على الرابط
+                const nav = document.querySelector('nav');
+                const navOverlay = document.querySelector('.nav-overlay');
+                const mobileMenu = document.querySelector('.mobile-menu');
+                
+                if (nav) nav.classList.remove('active');
+                if (navOverlay) navOverlay.classList.remove('active');
+                if (mobileMenu) mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+}
+
+// تهيئة نموذج الاتصال
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // التحقق البسيط من النموذج
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !subject || !message) {
+                alert(translations[currentLanguage].formError);
+                return;
+            }
+            
+            // محاكاة إرسال النموذج مع رسالة خاصة باللغة
+            alert(translations[currentLanguage].formSuccess);
+            this.reset();
+        });
+    }
+}
+
 // تهيئة كل شيء عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     initLanguage();
     initContactInteractions();
     initVideos();
+    initScrollAnimations();
+    initImageErrorHandling();
+    initMobileMenu();
+    initBackToTop();
+    initSmoothScrolling();
+    initContactForm();
     
     // إضافة مستمعي الأحداث لأزرار اللغة
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -403,108 +553,5 @@ document.addEventListener('DOMContentLoaded', function() {
             const lang = this.getAttribute('data-lang');
             switchLanguage(lang);
         });
-    });
-});
-
-// تبديل قائمة الجوال
-document.querySelector('.mobile-menu').addEventListener('click', function() {
-    document.querySelector('nav').classList.toggle('active');
-});
-
-// إغلاق قائمة الجوال عند النقر خارجها
-document.addEventListener('click', function(event) {
-    const nav = document.querySelector('nav');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    if (!nav.contains(event.target) && !mobileMenu.contains(event.target) && nav.classList.contains('active')) {
-        nav.classList.remove('active');
-    }
-});
-
-// زر العودة إلى الأعلى
-const backToTopButton = document.querySelector('.back-to-top');
-
-window.addEventListener('scroll', function() {
-    if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('active');
-    } else {
-        backToTopButton.classList.remove('active');
-    }
-});
-
-backToTopButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({top: 0, behavior: 'smooth'});
-});
-
-// التمرير السلس لروابط التنقل
-document.querySelectorAll('nav a, .hero-buttons a, .footer-links a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-            
-            // إغلاق قائمة الجوال بعد النقر على الرابط
-            document.querySelector('nav').classList.remove('active');
-        }
-    });
-});
-
-// إرسال النموذج مع دعم اللغة
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // التحقق البسيط من النموذج
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    if (!name || !email || !subject || !message) {
-        alert(translations[currentLanguage].formError);
-        return;
-    }
-    
-    // محاكاة إرسال النموذج مع رسالة خاصة باللغة
-    alert(translations[currentLanguage].formSuccess);
-    this.reset();
-});
-
-// إضافة حركة التحميل للبطاقات عند التمرير
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// مراقبة جميع البطاقات للحركة
-document.querySelectorAll('.platform-card, .video-card, .gallery-item, .skill-category, .contact-item').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(card);
-});
-
-// التعامل مع أخطاء تحميل الصور
-document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('error', function() {
-        this.src = 'https://via.placeholder.com/400x300/333333/FFFFFF?text=صورة+غير+متوفرة';
-        this.alt = 'صورة غير متوفرة';
     });
 });
