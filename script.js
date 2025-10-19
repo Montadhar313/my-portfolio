@@ -426,7 +426,8 @@ function initImageErrorHandling() {
     });
 }
 
-// تهيئة قائمة الجوال
+
+// تهيئة قائمة الجوال - تأكد من أن هذه الدالة موجودة
 function initMobileMenu() {
     const mobileMenu = document.querySelector('.mobile-menu');
     const nav = document.querySelector('nav');
