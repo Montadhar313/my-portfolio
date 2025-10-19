@@ -16,49 +16,65 @@
 </head>
 <body>
     <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="https://www.raed.net/img?id=1448427" alt="شعار الموقع">
-                    </div>
-                    <div class="logo-text">
-                        <div class="logo-title" data-i18n="portfolio">منتظر كريم</div>
-                        <div class="logo-subtitle" data-i18n="gameDevGraphicDesigner">مطور ألعاب ومصمم جرافيك</div>
-                    </div>
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="https://www.raed.net/img?id=1448427" alt="شعار الموقع">
                 </div>
-                
-                <div class="nav-controls">
-                    <div class="language-switcher">
-                        <button class="lang-btn active" data-lang="ar">العربية</button>
-                        <button class="lang-btn" data-lang="en">English</button>
-                    </div>
-                    <button class="mobile-menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                <div class="logo-text">
+                    <div class="logo-title" data-i18n="portfolio">منتظر كريم</div>
+                    <div class="logo-subtitle" data-i18n="gameDevGraphicDesigner">مطور ألعاب ومصمم جرافيك</div>
                 </div>
-                
-                <nav>
-                    <ul>
-                        <li><a href="#home" data-i18n="home">الرئيسية</a></li>
-                        <li><a href="#skills" data-i18n="skills">مهاراتي</a></li>
-                        <li><a href="#platforms" data-i18n="platforms">منصاتي</a></li>
-                        <li><a href="#videos" data-i18n="videos">فيديوهاتي</a></li>
-                        <li><a href="#gallery" data-i18n="gallery">معرض الأعمال</a></li>
-                        <li><a href="#graphic-design" data-i18n="graphicDesign">جرافيك ديزاين</a></li>
-                        <li><a href="#contact" data-i18n="contact">اتصل بي</a></li>
-                    </ul>
-                </nav>
             </div>
+            
+            <div class="nav-controls">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="ar">العربية</button>
+                    <button class="lang-btn" data-lang="en">English</button>
+                </div>
+                
+                <!-- استبدال زر القائمة القديم -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- القائمة الرئيسية للشاشات الكبيرة -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" data-i18n="home">الرئيسية</a></li>
+                    <li><a href="#skills" data-i18n="skills">مهاراتي</a></li>
+                    <li><a href="#platforms" data-i18n="platforms">منصاتي</a></li>
+                    <li><a href="#videos" data-i18n="videos">فيديوهاتي</a></li>
+                    <li><a href="#gallery" data-i18n="gallery">معرض الأعمال</a></li>
+                    <li><a href="#graphic-design" data-i18n="graphicDesign">جرافيك ديزاين</a></li>
+                    <li><a href="#contact" data-i18n="contact">اتصل بي</a></li>
+                </ul>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
 
+<!-- إضافة القائمة المتنقلة الجديدة -->
+<nav class="mobile-nav" id="mobileNav">
+    <ul>
+        <li><a href="#home" data-i18n="home">الرئيسية</a></li>
+        <li><a href="#skills" data-i18n="skills">مهاراتي</a></li>
+        <li><a href="#platforms" data-i18n="platforms">منصاتي</a></li>
+        <li><a href="#videos" data-i18n="videos">فيديوهاتي</a></li>
+        <li><a href="#gallery" data-i18n="gallery">معرض الأعمال</a></li>
+        <li><a href="#graphic-design" data-i18n="graphicDesign">جرافيك ديزاين</a></li>
+        <li><a href="#contact" data-i18n="contact">اتصل بي</a></li>
+    </ul>
+</nav>
     <!-- إضافة overlay للقائمة -->
     <div class="nav-overlay"></div>
-
+<!-- إضافة overlay للقائمة -->
+<div class="nav-overlay" id="navOverlay"></div>
     <!-- باقي الأقسام تبقى كما هي -->
     <!-- Hero Section -->
     <section class="hero" id="home">
