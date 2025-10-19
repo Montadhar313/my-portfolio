@@ -555,3 +555,71 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// تفعيل القائمة المتنقلة
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const nav = document.querySelector('nav');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const body = document.body;
+
+    if (mobileMenu && nav && navOverlay) {
+        // تفعيل/إلغاء تفعيل القائمة
+        mobileMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+
+        // إغلاق القائمة عند النقر على الـ overlay
+        navOverlay.addEventListener('click', function() {
+            closeMobileMenu();
+        });
+
+        // إغلاق القائمة عند النقر على رابط
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+        });
+
+        // إغلاق القائمة عند تغيير حجم النافذة (إذا أصبحت كبيرة)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // إغلاق القائمة عند الضغط على زر Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        function toggleMobileMenu() {
+            const isActive = mobileMenu.classList.contains('active');
+            
+            if (isActive) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            nav.classList.add('active');
+            navOverlay.classList.add('active');
+            body.style.overflow = 'hidden'; // منع التمرير عند فتح القائمة
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            nav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            body.style.overflow = ''; // إعادة التمرير
+        }
+    }
+});
