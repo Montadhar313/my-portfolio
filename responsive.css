@@ -246,7 +246,68 @@
         display: none;
     }
 }
+/* ===== RESPONSIVE NAVIGATION ===== */
 
+/* إخفاء القائمة الرئيسية وإظهار زر القائمة في الشاشات الصغيرة والمتوسطة */
+@media (max-width: 991.98px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
+    .nav-controls {
+        margin-left: auto;
+    }
+}
+
+/* إظهار القائمة الرئيسية وإخفاء زر القائمة في الشاشات الكبيرة */
+@media (min-width: 992px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+    
+    .main-nav {
+        display: flex;
+    }
+    
+    .mobile-nav {
+        display: none;
+    }
+}
+
+/* تحسينات إضافية للشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .mobile-nav {
+        width: 85%;
+    }
+    
+    .mobile-nav a {
+        padding: var(--space-md) var(--space-lg);
+        font-size: var(--text-base);
+    }
+    
+    .logo-text {
+        display: none;
+    }
+    
+    .nav-controls {
+        gap: var(--space-xs);
+    }
+    
+    .language-switcher {
+        scale: 0.9;
+    }
+}
+
+/* تحسينات للشاشات المتوسطة */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .mobile-nav {
+        width: 350px;
+    }
+}
 /* Medium Devices (Tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .container {
